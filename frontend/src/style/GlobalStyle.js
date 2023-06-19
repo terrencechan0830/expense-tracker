@@ -23,6 +23,6 @@ export const GlobalStyle = createGlobalStyle`
         background-color: grey;
         font-size: clamp(1rem, 1.5vw, 1.2rem);
         overflow: hidden;
-        color: rgba{34, 34, 96, .6};
+        color: rgba(34, 34, 96, .6);
     }
 `;

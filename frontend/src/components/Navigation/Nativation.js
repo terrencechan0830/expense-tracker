@@ -1,10 +1,9 @@
-import React from 'react'
 import styled from 'styled-components'
 import avatar from '../../img/avatar.png'
 import { signout } from '../../utils/icons'
 import { menuItems } from '../../utils/menuItems'
 
-function Nativation() {
+function Nativation({active, setActive}) {
   return (
     <NavStyled>
         <div className='user-con'>
@@ -16,8 +15,8 @@ function Nativation() {
         </div>
         <ul className='menu-items'>
             {menuItems.map((item) => {
-                return <li key={item.id}>
-                    {item.icon}{" "}
+                return <li key={item.id} onClick={() => setActive(item.id)} className={active === item.id ? 'active': ''}>
+                    {item.icon}
                     <span>{item.title}</span>
                 </li>
             })}
@@ -84,6 +83,22 @@ const NavStyled = styled.nav`
                 font-size: 1.4rem;
                 transition: all .4s ease-in-out;
             }
+        }
+    }
+    .active{
+        color: rgba(34, 34, 96, 1) !important;
+        i{
+            color: rgba(34, 34, 96, 1) !important;
+        }
+        &::before{
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: #222260;
+            border-radius: 0 10px 10px 0;
         }
     }
 `;
