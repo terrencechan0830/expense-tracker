@@ -7,7 +7,7 @@ import Button from '../Button/Button';
 import { plus } from '../../utils/icons';
 
 
-function Form() {
+function IncomeForm() {
 
     const {addIncome} = useGlobalContext()
 
@@ -38,13 +38,24 @@ function Form() {
     }
 
   return (
-    <FormStyled onSubmit={handleSubmit}>
+    <IncomeFormStyled onSubmit={handleSubmit}>
+        <div className='input-control'>
+            <DatePicker
+                id='date'
+                placeholderText='Date'
+                selected={date}
+                dateFormat='dd/MM/yyyy'
+                onChange={(date) => {
+                    setInputState({...inputState, date: date})
+                }}
+            />
+        </div>
         <div className='input-control'>
             <input
                 type='text'
                 value={title}
                 name={'title'}
-                placeholder='Salary Title'
+                placeholder='Name'
                 onChange={handleInput('title')}
             />
         </div>
@@ -53,24 +64,14 @@ function Form() {
                 type='number'
                 value={amount}
                 name={'amount'}
-                placeholder='Salary Amount'
+                placeholder='Amount'
                 onChange={handleInput('amount')}
             />
         </div>
-        <div className='input-control'>
-            <DatePicker
-                id='date'
-                placeholderText='Enter A Date'
-                selected={date}
-                dateFormat='dd/MM/yyyy'
-                onChange={(date) => {
-                    setInputState({...inputState, date: date})
-                }}
-            />
-        </div>
+        
         <div className="selects input-control">
             <select required value={category} name="category" id="category" onChange={handleInput('category')}>
-                <option value="" disabled>Select Option</option>
+                <option value="" disabled>Select Category</option>
                 <option value="salary">Salary</option>
                 <option value="freelancing">Freelancing</option>
                 <option value="investments">Investiments</option>
@@ -95,11 +96,11 @@ function Form() {
             />
         </div>
         
-    </FormStyled>
+    </IncomeFormStyled>
   )
 }
 
-const FormStyled = styled.form`
+const IncomeFormStyled = styled.form`
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -126,8 +127,8 @@ const FormStyled = styled.form`
     }
     .selects{
         display: flex;
-        justify-content: flex-end;
         select{
+            width: 100%;
             color: rgba(34, 34, 96, 0.4);
             &:focus, &:active{
                 color: rgba(34, 34, 96, 1);
@@ -144,4 +145,4 @@ const FormStyled = styled.form`
     }
 `;
 
-export default Form
+export default IncomeForm

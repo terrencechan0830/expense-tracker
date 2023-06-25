@@ -1,9 +1,10 @@
 import React from 'react'
 import { styled } from 'styled-components'
+import { dateFormat } from '../../utils/dateFormat';
 import { bitcoin, book, calender, card, circle, clothing, comment, dollar, food, freelance, medical, money, piggy, stocks, takeaway, trash, tv, users, yt } from '../../utils/icons';
 import Button from '../Button/Button';
 
-function IncomeItem({
+function RecordItem({
     id,
     title,
     amount,
@@ -62,7 +63,7 @@ function IncomeItem({
     }
 
   return (
-    <IncomeItemStyled indicatorColor={indicatorColor}>
+    <RecordItemStyled indicatorColor={indicatorColor}>
         <div className='icon'>
             {type === 'expense' ? expenseCatIcon() : categoryIcon()}
         </div>
@@ -71,7 +72,7 @@ function IncomeItem({
             <div className='inner-content'>
                 <div className='text'>
                     <p>{dollar} {amount}</p>
-                    <p>{calender} {date}</p>
+                    <p>{calender} {dateFormat(date)}</p>
                     <p>
                         {comment}
                         {description}
@@ -91,11 +92,11 @@ function IncomeItem({
                 </div>
             </div>
         </div>
-    </IncomeItemStyled>
+    </RecordItemStyled>
   )
 }
 
-const IncomeItemStyled = styled.div`
+const RecordItemStyled = styled.div`
     background: #FCF6F9;
     border: 2px solid #FFFFFF;
     box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
@@ -162,4 +163,4 @@ const IncomeItemStyled = styled.div`
     }
 `;
 
-export default IncomeItem
+export default RecordItem
