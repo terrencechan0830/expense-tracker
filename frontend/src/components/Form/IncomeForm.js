@@ -9,7 +9,7 @@ import { plus } from '../../utils/icons';
 
 function IncomeForm() {
 
-    const {addIncome} = useGlobalContext()
+    const {addIncome, error, setError} = useGlobalContext()
 
     const [inputState, setInputState] = useState({
         title: '',
@@ -23,6 +23,7 @@ function IncomeForm() {
 
     const handleInput = name => e => {
        setInputState({...inputState, [name]: e.target.value})
+       setError('')
     }
 
     const handleSubmit = e => {
@@ -39,6 +40,7 @@ function IncomeForm() {
 
   return (
     <IncomeFormStyled onSubmit={handleSubmit}>
+        {error && <p className='error'>{error}</p>}
         <div className='input-control'>
             <DatePicker
                 id='date'
@@ -95,7 +97,6 @@ function IncomeForm() {
                 color={'#fff'}
             />
         </div>
-        
     </IncomeFormStyled>
   )
 }
